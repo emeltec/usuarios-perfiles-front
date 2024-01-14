@@ -1,0 +1,67 @@
+
+<button (click)="nuevoPerfil()">Agregar Perfil</button>
+
+<p-table [value]="perfiles">
+  <ng-template pTemplate="header">
+    <tr>
+      <th>Perfil</th>
+      <th>Descripción</th>
+      <th>Acciones</th>
+    </tr>
+  </ng-template>
+  <ng-template pTemplate="body" let-data>
+    <tr>
+      <td>{{data.nombre_perfil}}</td>
+      <td>{{data.descripcion_perfil}}</td>
+      <td>
+        <button (click)="editarPerfil(data)">Editar</button>
+      </td>
+    </tr>
+  </ng-template>
+</p-table>
+
+<!-- <p-dialog header="Title" [(visible)]="showDialog" [style]="{width: '50vw'}">
+  Content
+</p-dialog> -->
+
+<p-dialog [(visible)]="showDialog">
+  <p-table [value]="perfilOpciones">
+    <ng-template pTemplate="header">
+      <tr>
+        <th>Módulo</th>
+        <th>Opción</th>
+        <th>Ver</th>
+        <th>Crear</th>
+        <th>Editar</th>
+        <th>Borrar</th>
+      </tr>
+    </ng-template>
+    <ng-template pTemplate="body" let-data>
+      <tr>
+        <td>{{data.modulo_titulo}}</td>
+        <td>{{data.opcion_titulo}}</td>
+        <td>
+          <p-checkbox [(ngModel)]="data.acceso_visualizar" [binary]="true"
+            [ngModelOptions]="{ standalone: true }" (onChange)="selectCheck($event)"></p-checkbox>
+        </td>
+        <td>
+          <p-checkbox [(ngModel)]="data.acceso_crear" [binary]="true"
+            [ngModelOptions]="{ standalone: true }" (onChange)="selectCheck($event)"></p-checkbox>
+        </td>
+        <td>
+          <p-checkbox [(ngModel)]="data.acceso_actualizar" [binary]="true"
+            [ngModelOptions]="{ standalone: true }" (onChange)="selectCheck($event)"></p-checkbox>
+        </td>
+        <td>
+          <p-checkbox [(ngModel)]="data.acceso_eliminar" [binary]="true"
+            [ngModelOptions]="{ standalone: true }" (onChange)="selectCheck($event)"></p-checkbox>
+        </td>
+      </tr>
+    </ng-template>
+  </p-table>
+
+  <ng-template pTemplate="footer">
+    <button (click)="savePerfil()">Guadar</button>
+    <button (click)="cancelDialog()">Cancelar</button>
+  </ng-template>
+</p-dialog>
