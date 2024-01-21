@@ -99,7 +99,17 @@ export class PerfilComponent implements OnInit {
       }
     })
 
-    this.http.post(ENDPOINTS.POST_REGISTRAR_PERFIL_OPCION, list).subscribe(res => {
+    const req = {
+      perfil: {
+        id_perfil:1,
+        nombre_perfil:'Admin',
+        descripcion_perfil:'Admin',
+        estado_registro:1
+      },
+      perfilOpcion: list
+    }
+
+    this.http.post(ENDPOINTS.POST_REGISTRAR_PERFIL_OPCION, req).subscribe(res => {
       console.log(res);
     })
   }
